@@ -43,6 +43,8 @@ func buildReporter() reporting.Reporter {
 		return reporting.BuildJsonReporter()
 	case silent || selectReporter == "silent":
 		return reporting.BuildSilentReporter()
+	case selectReporter == "tlog":
+		return reporting.BuildTLogReporter()
 	case selectReporter == "dot":
 		// Story is turned on when verbose is set, so we need to check for dot reporter first.
 		return reporting.BuildDotReporter()

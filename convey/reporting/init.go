@@ -38,6 +38,11 @@ func BuildStoryReporter() Reporter {
 		NewProblemReporter(out),
 		consoleStatistics)
 }
+func BuildTLogReporter() Reporter {
+	return NewReporters(
+		NewGoTestReporter(),
+		NewTLogReporter())
+}
 func BuildSilentReporter() Reporter {
 	out := NewPrinter(NewConsole())
 	return NewReporters(
