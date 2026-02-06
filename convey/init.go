@@ -34,6 +34,14 @@ func noStoryFlagProvided() bool {
 }
 
 func buildReporter() reporting.Reporter {
+	if ctxMgr != nil {
+		if override, ok := ctxMgr.GetValue(reporterFactoryKey); ok {
+			if factory, ok := override.(ReporterFactory); ok && factory != nil {
+				return factory()
+			}
+		}
+	}
+
 	selectReporter := os.Getenv("GOCONVEY_REPORTER")
 
 	switch {
